@@ -75,8 +75,7 @@ if __name__ == '__main__':
                 newDatabase['N'][instDict['N']] = newDatabase['array'][sizeIdx]
             newDatabase['array'][sizeIdx].append(
                 {'n':instDict['n'], 'm':instDict['m'], 'N':instDict['N'], 'M':instDict['M'], \
-                    'onnxFile':f'./onnx/tllBench_n={instDict["n"]}_N=M={instDict["N"]}_m={instDict["m"]}_instance_{sizeIdx}_{instIdx}.onnx' , \
-                    'tllFile':f'./tll/tllBench_n={instDict["n"]}_N=M={instDict["N"]}_m={instDict["m"]}_instance_{sizeIdx}_{instIdx}.tll', \
+                    'baseFileName':f'tllBench_n={instDict["n"]}_N=M={instDict["N"]}_m={instDict["m"]}_instance_{sizeIdx}_{instIdx}' , \
                     'inputPolytopeFile':f'./input_polytopes/polytope_n={instDict["n"]}_instance_{sizeIdx}_{instIdx}.p'
                     }
             )
