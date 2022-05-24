@@ -30,6 +30,8 @@ if __name__ == '__main__':
     with open('sizeVsTime_n2_input.p','rb') as fp:
         oldDatabase = pickle.load(fp)
     
+    newDatabase = {'N':{}, 'array':[[] for k in range(len(oldDatabase))]}
+
     for sizeIdx in range(len(oldDatabase)):
         for instIdx in range(len(oldDatabase[sizeIdx])):
             instDict = oldDatabase[sizeIdx][instIdx]
@@ -68,3 +70,16 @@ if __name__ == '__main__':
             instDict['inputPoly']['samples'] = instDict['samples']['input']
             with open(f'../input_polytopes/polytope_n={instDict["n"]}_instance_{sizeIdx}_{instIdx}.p','wb') as fp:
                 pickle.dump(instDict['inputPoly'], fp)
+
+            if not instDict['N'] in newDatabase['N']:
+                newDatabase['N'][instDict['N']] = newDatabase['array'][sizeIdx]
+            newDatabase['array'][sizeIdx].append(
+                {'n':instDict['n'], 'm':instDict['m'], 'N':instDict['N'], 'M':instDict['M'], \
+                    'onnxFile':f'./onnx/tllBench_n={instDict["n"]}_N=M={instDict["N"]}_m={instDict["m"]}_instance_{sizeIdx}_{instIdx}.onnx' , \
+                    'tllFile':f'./tll/tllBench_n={instDict["n"]}_N=M={instDict["N"]}_m={instDict["m"]}_instance_{sizeIdx}_{instIdx}.tll', \
+                    'inputPolytopeFile':f'./input_polytopes/polytope_n={instDict["n"]}_instance_{sizeIdx}_{instIdx}.p'
+                    }
+            )
+
+    with open('../tllBench_database.p','wb') as fp:
+        pickle.dump(newDatabase, fp)
