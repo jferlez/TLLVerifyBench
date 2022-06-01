@@ -4,7 +4,7 @@ import sys
 import numpy as np
 from numpy.random import MT19937
 from numpy.random import RandomState, SeedSequence
-import tensorflow as tf
+# import tensorflow as tf
 import onnx
 import re
 import pickle
