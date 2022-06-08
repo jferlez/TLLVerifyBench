@@ -75,7 +75,7 @@ if __name__ == '__main__':
                 fp.write(f'\n; Min output sample: {outputExtents[0]}. Max output sample: {outputExtents[1]}\n')
                 fp.write(f'(assert ({propDirection} Y0 {propThresh}))\n')
 
-            with open('tllBench_instances.csv','a') as fp:
+            with open('instances.csv','a') as fp:
                 fp.write(f'./onnx/{tllBenchDatabase["N"][size][instIdx]["baseFileName"]}.onnx,./vnnlib/property_N={size}_{instIdx}.vnnlib,{timeout}\n')
 
 
