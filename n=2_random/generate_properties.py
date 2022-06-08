@@ -61,19 +61,19 @@ if __name__ == '__main__':
             with open(f'./vnnlib/property_N={size}_{instIdx}.vnnlib','w') as fp:
                 # Declare the inputs
                 for i in range(len(inputExtents)):
-                    fp.write(f'(declare-const X{i} Real)\n')
+                    fp.write(f'(declare-const X_{i} Real)\n')
                 # Declare the output
-                fp.write(f'(declare-const Y0 Real)\n\n')
+                fp.write(f'(declare-const Y_0 Real)\n\n')
                 # Write the input constraints:
                 fp.write('; Input Constraints:\n')
                 for i in range(len(inputExtents)):
-                    fp.write(f'(assert (<= X{i} {inputExtents[i][1]}))\n')
-                    fp.write(f'(assert (>= X{i} {inputExtents[i][0]}))\n')
+                    fp.write(f'(assert (<= X_{i} {inputExtents[i][1]}))\n')
+                    fp.write(f'(assert (>= X_{i} {inputExtents[i][0]}))\n')
                 
                 # Write the output property:
                 fp.write('\n; Output property:')
                 fp.write(f'\n; Min output sample: {outputExtents[0]}. Max output sample: {outputExtents[1]}\n')
-                fp.write(f'(assert ({propDirection} Y0 {propThresh}))\n')
+                fp.write(f'(assert ({propDirection} Y_0 {propThresh}))\n')
 
             with open('instances.csv','a') as fp:
                 fp.write(f'{tllBenchDatabase["N"][size][instIdx]["baseFileName"]}.onnx,property_N={size}_{instIdx}.vnnlib,{timeout}\n')
