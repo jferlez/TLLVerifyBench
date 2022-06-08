@@ -25,7 +25,7 @@ if __name__ == '__main__':
     with open('tllBench_database.p','rb') as fp:
         tllBenchDatabase = pickle.load(fp)
     
-    with open('./tllBench_instances.csv','w') as fp:
+    with open('./instances.csv','w') as fp:
         fp.write(r'')
 
     timeout = int(600) # seconds
@@ -76,7 +76,7 @@ if __name__ == '__main__':
                 fp.write(f'(assert ({propDirection} Y0 {propThresh}))\n')
 
             with open('tllBench_instances.csv','a') as fp:
-                fp.write(f'./{tllBenchDatabase["N"][size][instIdx]["baseFileName"]}.onnx,./vnnlib/property_N={size}_{instIdx}.vnnlib,{timeout}\n')
+                fp.write(f'./onnx/{tllBenchDatabase["N"][size][instIdx]["baseFileName"]}.onnx,./vnnlib/property_N={size}_{instIdx}.vnnlib,{timeout}\n')
 
 
 
