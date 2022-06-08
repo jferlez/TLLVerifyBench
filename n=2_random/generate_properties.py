@@ -76,7 +76,7 @@ if __name__ == '__main__':
                 fp.write(f'(assert ({propDirection} Y0 {propThresh}))\n')
 
             with open('instances.csv','a') as fp:
-                fp.write(f'./onnx/{tllBenchDatabase["N"][size][instIdx]["baseFileName"]}.onnx,./vnnlib/property_N={size}_{instIdx}.vnnlib,{timeout}\n')
+                fp.write(f'{tllBenchDatabase["N"][size][instIdx]["baseFileName"]}.onnx,property_N={size}_{instIdx}.vnnlib,{timeout}\n')
 
 
 
