@@ -24,7 +24,7 @@ if __name__ == '__main__':
 
     with open('tllBench_database.p','rb') as fp:
         tllBenchDatabase = pickle.load(fp)
-    
+
     with open('./instances.csv','w') as fp:
         fp.write(r'')
 
@@ -49,7 +49,7 @@ if __name__ == '__main__':
                 zip_ref.extractall('./onnx/')
             onnxModel = onnx.load('./onnx/' + tllBenchDatabase["N"][size][instIdx]["baseFileName"] + '.onnx')
             m = rt.InferenceSession('./onnx/' + tllBenchDatabase["N"][size][instIdx]["baseFileName"] + '.onnx', providers=providers)
-            
+
             outputSamples = m.run(onnxModel.graph.node[-1].output, {"input": inputSamples})[0]
             outputExtents = [np.min(outputSamples), np.max(outputSamples)]
             outputWidth = (outputExtents[1]-outputExtents[0])
@@ -69,7 +69,7 @@ if __name__ == '__main__':
                 for i in range(len(inputExtents)):
                     fp.write(f'(assert (<= X_{i} {inputExtents[i][1]}))\n')
                     fp.write(f'(assert (>= X_{i} {inputExtents[i][0]}))\n')
-                
+
                 # Write the output property:
                 fp.write('\n; Output property:')
                 fp.write(f'\n; Min output sample: {outputExtents[0]}. Max output sample: {outputExtents[1]}\n')
@@ -80,4 +80,4 @@ if __name__ == '__main__':
 
 
 
-            
+
