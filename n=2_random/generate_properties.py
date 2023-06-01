@@ -55,8 +55,11 @@ if __name__ == '__main__':
             outputWidth = (outputExtents[1]-outputExtents[0])
             outputCenter = (outputExtents[1]+outputExtents[0])/2
 
-            propThresh = 2*outputWidth*(np.random.random_sample() - 0.5) + outputCenter
             propDirection = '>=' if (np.random.random_sample() >= 0.5) else '<='
+            if propDirection == '>=':
+                propThresh = 2*outputWidth*(np.random.random_sample() - 0.5) + outputCenter - 0.5 * outputWidth
+            else:
+                propThresh = 2*outputWidth*(np.random.random_sample() - 0.5) + outputCenter + 0.5 * outputWidth
 
             with open(f'./vnnlib/property_N={size}_{instIdx}.vnnlib','w') as fp:
                 # Declare the inputs
