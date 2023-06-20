@@ -56,7 +56,7 @@ if __name__ == '__main__':
             outputCenter = (outputExtents[1]+outputExtents[0])/2
 
             propDirection = '>=' if (np.random.random_sample() >= 0.5) else '<='
-            if propDirection == '>=':
+            if propDirection == '<=':
                 propThresh = 2*outputWidth*(np.random.random_sample() - 0.5) + outputCenter - 0.5 * outputWidth
             else:
                 propThresh = 2*outputWidth*(np.random.random_sample() - 0.5) + outputCenter + 0.5 * outputWidth
